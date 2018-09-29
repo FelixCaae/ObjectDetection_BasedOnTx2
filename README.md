@@ -19,7 +19,7 @@ Before we run the yolo model, make sure you have cuda correctly installed(it is 
 Then you can clone the newest yolov3 repo、modify Makefile and make.Details can be found in this [blog](https://jkjung-avt.github.io/yolov3/)
 Assuming everything went OK, you should be able to  run test on your TX2 board!
 But I found that yolov3 is really slow on TX2.The first time I run it, I only get 2\~3 fps(or 0.3\~0.5 sec).I have run nvpmodel and jetson_clocks already.So we decided to check something else.
-The best thing I found is that you can set the model\`s input size in yolov3.cfg file.The input size can vary from 144 to 608.(The size must be 32 x ratio).I didn\`t test bigger or smaller size.As to our research I guess that`s enought.Too small make model useless while too big is not bearably slow.
+The best thing I found is that you can set the model\`s input size in yolov3.cfg file.The input size can vary from 144 to 608.(The size must be 32 x ratio).I didn\`t test bigger or smaller size.As to our research I guess that\`s enought.Too small make model useless while too big is not bearably slow.
 So let\`s try to decrease the default size(416) and see whether we can find a good trade-off.
 I do this test by using yolov3 model(.cfg) and voc data.Sadly I found that there is no yolov3-voc weights available, the official yolov3.weights is trained on coco data.So I trained my own yolov3-voc weights(10400 iterations , used yolov3.weights as pretrained model).
 And use this weights to calculate mAP.
@@ -27,3 +27,4 @@ Here is the result I have(Size vary from 160-384).
 
 ![image](https://github.com/FelixCaae/ObjectDetection_BasedOnTx2/blob/master/fps_mAP.png)
 
+So the result is interesting, the fourth point and fifth point has nearly same perfomance but totally different speed.There is a gap between two group of points.And so I think the fifth point(size 256) is a good choice to speed up yolov3`s perfomance.
