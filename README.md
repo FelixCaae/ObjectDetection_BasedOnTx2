@@ -1,5 +1,5 @@
 # Object Detection Research Based on TX2
-Object Detection is a category of Computer Science which aims at recognizing objects in images and simultaneously reporting object`s position and bounding box.
+Object Detection is a category of AI/Deep Learning which aims at recognizing objects in images and simultaneously reporting object`s position and bounding box.
 Here is an example.
 ![image](https://pjreddie.com/media/image/Screen_Shot_2018-03-24_at_10.53.04_PM.png)
 And another example.
