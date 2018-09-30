@@ -1,21 +1,37 @@
 # Object Detection Research Based on TX2
-Object Detection is a category of AI/Deep Learning which aims at recognizing objects in images and simultaneously reporting object`s position and bounding box.
+Lately our lab get a new device:TX2.My job is to do some research around implementing Object Detecton Algorithms on it. 
+
+TX2, whose whole name is Nvidia Jetson TX2, is a powerful embedded system(SoC).It has 6 cpu cores and a gpu with 256 cuda cores.More details can be found [here](https://www.nvidia.com/zh-cn/autonomous-machines/embedded-systems-dev-kits-modules/).
+Its computing power may not be able to beat GTX 1070ti but is enough for some actual applications.
+
+Object Detection is a category of Computer Vision which aims at recognizing objects in images and simultaneously reporting object`s position and bounding box.
+
 Here is an example.
-![image](https://pjreddie.com/media/image/Screen_Shot_2018-03-24_at_10.53.04_PM.png)
-And another example.
-  
 ![image](https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1233252412,2871820223&fm=26&gp=0.jpg)
-  
-Current Object Detection technique can be subdivided into two  classes: one-stage methods and two-stage methods.Usually speaking, one-stage methods run faster and their models are simpler.Classic one-stage model includes yolo,ssd,retina-net and so on.These models and their variation are considered to be good for embeded system like TX2.
+And another example.
+![image](https://pjreddie.com/media/image/Screen_Shot_2018-03-24_at_10.53.04_PM.png)
 
-TX2 ,whose whole whole name is Nvidia Jetson TX2 , is a powerful embedded system(Soc).It has 6 cpu cores and a gpu with 256 cuda cores.Its computing power may not be able to beat GTX 1070ti but is enough for some actual applications. To deeply dig out its potential in object detection, we firstly need to find a best baseline model.  
+It is easy to understand what the term 'detection' means after seeing an example.It means the combination of **Classification** and **Localization**.
 
-As to me, yolov3 is a very compromising model, because it seems to be very fast and both accurate.
+![image](http://mmbiz.qpic.cn/mmbiz_png/iaTa8ut6HiawDhWYblXp7Uqo1KKTNzCzzRITWA48CsUGcnVUiayPmfGW00KF7ia6nXPguAYLVpicTYZ3EMOusgT5Y5w/640?wx_fmt=png&wxfrom=5&wx_lazy=1)
+
+Current Object Detection technique can be subdivided into two  classes: one-stage methods and two-stage methods.The two-stage methods divide the problem into two steps:1 .Find appropriate area. 2. Use classifiers to recognize what\`s in the area.Howeverr, one-stage methods simply use a unified CNN network to predict both objects\` class and location.Usually speaking, one-stage methods run faster and their models are simpler.Classic one-stage model includes YOLO(you only look once),SSD(single shot detection),retina-net and so on.These models and their variation are considered to be good for embeded system like TX2.
+
+After some researches, I found yolov3、RFBNet、 a very compromising model, because it seems to be very fast and both accurate.
+
+Download their papers here.<br>
+YOLO - https://arxiv.org/abs/1506.02640<br>
+YOLO9000 - https://arxiv.org/abs/1612.08242<br>
+YOLOv3 - https://arxiv.org/abs/1804.02767<br>
+SSD - https://arxiv.org/abs/1512.02325<br>
+RFBNet - https://arxiv.org/abs/1711.07767<br>
+RetinaNet - https://arxiv.org/pdf/1708.02002.pdf<br>
+
+=
 
 ![image](https://pjreddie.com/media/image/map50blue.png)
+*This result come from pjreddie.com*
 
-So here we go.
-Before we run the yolo model, make sure you have cuda correctly installed(it is usally included in jetpack).Use ```nvcc -V``` to check it.
 Then you can clone the newest yolov3 repo、modify Makefile and make.Details can be found in this [blog](https://jkjung-avt.github.io/yolov3/)
 Assuming everything went OK, you should be able to  run test on your TX2 board!
 But I found that yolov3 is really slow on TX2.The first time I run it, I only get 2\~3 fps(or 0.3\~0.5 sec).I have run nvpmodel and jetson_clocks already.So we decided to check something else.
