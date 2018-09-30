@@ -6,26 +6,34 @@ Its computing power may not be able to beat GTX 1070ti but is enough for some ac
 
 Object Detection is a category of Computer Vision which aims at recognizing objects in images and simultaneously reporting object`s position and bounding box.
 
-Here is an example.
-![image](https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1233252412,2871820223&fm=26&gp=0.jpg)
+Here is an example.<br>
+![image](https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1233252412,2871820223&fm=26&gp=0.jpg)<br>
 And another example.
-![image](http://mmbiz.qpic.cn/mmbiz_png/iaTa8ut6HiawDhWYblXp7Uqo1KKTNzCzzRITWA48CsUGcnVUiayPmfGW00KF7ia6nXPguAYLVpicTYZ3EMOusgT5Y5w/640?wx_fmt=png&wxfrom=5&wx_lazy=1)
-It is easy to understand what the term 'detection' means after seeing an example.It means the combination of **Classification** and **Localization**.
+![image](http://mmbiz.qpic.cn/mmbiz_png/iaTa8ut6HiawDhWYblXp7Uqo1KKTNzCzzRITWA48CsUGcnVUiayPmfGW00KF7ia6nXPguAYLVpicTYZ3EMOusgT5Y5w/640?wx_fmt=png&wxfrom=5&wx_lazy=1)<br>
+It is easy to understand what the term 'detection' means after seeing  this.It means the combination of **Classification** and **Localization**.
 
+Current Object Detection technique can be subdivided into two  classes: one-stage methods and two-stage methods.The two-stage methods divide the problem into two steps:1 .Find appropriate area. 2. Use classifiers to recognize what\`s in the area.Howeverr, one-stage methods simply use a unified CNN network to predict both objects\` class and location.Usually speaking, one-stage methods run faster with a little accuracy loss.Classic one-stage model includes YOLO(you only look once),SSD(single shot detection),retina-net and so on.These models and their variation are better candidates because they are much more faster than two-stage methods.
+After some researches, I found some promising one-stage methods.
+Before we go on, let`s figure out some important conception.
+## Metrics - what does mAP mean? 
+Prepare yourself, click into this link for an answer - http://tarangshah.com/blog/2018-01-27/what-is-map-understanding-the-statistic-of-choice-for-comparing-object-detection-models/
+## DataSets
+[COCO](http://cocodataset.org/) and [VOC](http://host.robots.ox.ac.uk:8080/leaderboard/main_bootstrap.php) are usually used in training and evaulating models.
+## State of art
+It`s very hard to list all models and their metrics and a little easier to give some typical models.But if we want to compare these models` ability, we have to make sure that some variables like machines they run on are same.Frameworks also influence, so it`s better to implement them all on a single framework with all condition same.But I think to make things easier, use their reported numbers can be a good start.
 
-Current Object Detection technique can be subdivided into two  classes: one-stage methods and two-stage methods.The two-stage methods divide the problem into two steps:1 .Find appropriate area. 2. Use classifiers to recognize what\`s in the area.Howeverr, one-stage methods simply use a unified CNN network to predict both objects\` class and location.Usually speaking, one-stage methods run faster and their models are simpler.Classic one-stage model includes YOLO(you only look once),SSD(single shot detection),retina-net and so on.These models and their variation are considered to be good for embeded system like TX2.
-
-After some researches, I found yolov3、RFBNet、 a very compromising model, because it seems to be very fast and both accurate.
-
-Download their papers here.<br>
-YOLO - https://arxiv.org/abs/1506.02640<br>
-YOLO9000 - https://arxiv.org/abs/1612.08242<br>
-YOLOv3 - https://arxiv.org/abs/1804.02767<br>
-SSD - https://arxiv.org/abs/1512.02325<br>
-RFBNet - https://arxiv.org/abs/1711.07767<br>
-RetinaNet - https://arxiv.org/pdf/1708.02002.pdf<br>
-
-=
+|Models | Ap50 | time|
+|----|----|----|
+|[YOLOv3-608](https://arxiv.org/abs/1804.02767)|57.9 |51|
+|[YOLOV3-320](https://arxiv.org/abs/1804.02767)|51.5 |22|
+|[YOLOV3-tiny]((https://arxiv.org/abs/1804.02767)|33.1 |5|
+|[SSD300](https://arxiv.org/abs/1512.02325)    |41.2|
+|[SSD512](https://arxiv.org/abs/1512.02325)    |46.5|
+|[DSSD513]|53.3|
+|Tiny-DSOD|40.4||
+|[RFBNet](https://arxiv.org/abs/1711.07767) | |
+|[RetinaNet](https://arxiv.org/pdf/1708.02002.pdf)| |
+ 
 
 ![image](https://pjreddie.com/media/image/map50blue.png)
 *This result come from pjreddie.com*
