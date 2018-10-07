@@ -22,7 +22,7 @@ Prepare yourself, click into this link for an answer - http://tarangshah.com/blo
 ## State of art
 
 
-# Normal models(time tested on Titan X)
+#### Normal models(time tested on Titan X)
 
 |Models | AP| AP.5 |Backbone| time|
 |----|----|----|----|----|
@@ -34,7 +34,7 @@ Prepare yourself, click into this link for an answer - http://tarangshah.com/blo
 |[RFB Net512](https://arxiv.org/abs/1711.07767) |33.8|54.2 |VGG-16      |30|
 |[RetinaNet](https://arxiv.org/pdf/1708.02002.pdf)|40.8|61.1|ResNeXt-101-FPN|200+|
 
-# Light models(time tested on TX2)
+#### Light models(time tested on TX2)
 
 |Models | VOC mAP | COCO mAP |Params|forward time|
 |----|----|----|----|-----|
