@@ -4,7 +4,7 @@ Lately our lab get a new device:TX2.My job is to do some research around impleme
 TX2, whose whole name is Nvidia Jetson TX2, is a powerful embedded system(SoC).It has 6 cpu cores and a gpu with 256 cuda cores.More details can be found [here](https://www.nvidia.com/zh-cn/autonomous-machines/embedded-systems-dev-kits-modules/).
 Its computing power may not be able to beat GTX 1070ti but is enough for some actual applications.
 
-Object Detection is a category of Computer Vision which aims at recognizing objects in images and simultaneously reporting object`s position and bounding box.
+Object Detection is a category of Computer Vision which aims at recognizing objects in images and simultaneously reporting object\`s position and bounding box.
 
 Here is an example.<br>
 ![image](https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1233252412,2871820223&fm=26&gp=0.jpg)<br>
@@ -14,13 +14,13 @@ It is easy to understand what the term 'detection' means after seeing  this.It m
 
 Current Object Detection technique can be subdivided into two  classes: one-stage methods and two-stage methods.The two-stage methods divide the problem into two steps:1 .Find appropriate area. 2. Use classifiers to recognize what\`s in the area.Howeverr, one-stage methods simply use a unified CNN network to predict both objects\` class and location.Usually speaking, one-stage methods run faster with a little accuracy loss.Classic one-stage model includes YOLO(you only look once),SSD(single shot detection),retina-net and so on.These models and their variation are better candidates because they are much more faster than two-stage methods.
 After some researches, I found some promising one-stage methods.
-Before we go on, let`s figure out some important conception.
+Before we go on, let\`s figure out some important conception.
 ## Metrics - what does mAP mean? 
 Prepare yourself, click into this link for an answer - http://tarangshah.com/blog/2018-01-27/what-is-map-understanding-the-statistic-of-choice-for-comparing-object-detection-models/
 ## DataSets
 [COCO](http://cocodataset.org/) and [VOC](http://host.robots.ox.ac.uk:8080/leaderboard/main_bootstrap.php) are usually used in training and evaulating models.
 ## State of art
-It`s very hard to list all models and their metrics and a little easier to give some typical models.But if we want to compare these models` ability, we have to make sure that some variables like machines they run on are same.Frameworks also influence, so it`s better to implement them all on a single framework with all condition same.But I think to make things easier, use their reported numbers can be a good start.
+
 
 # Normal models(time tested on Titan X)
 
@@ -42,6 +42,11 @@ It`s very hard to list all models and their metrics and a little easier to give 
 |[YOLOV3-tiny-512](https://arxiv.org/abs/1804.02767)  |62     |nan     |nan     |46    |
 |[Pelee](https://arxiv.org/pdf/1804.06882.pdf)        |70.9   |22.4    |5.98M   |60    | 
 |[Tiny-DSOD](https://arxiv.org/abs/1807.11013)        |77     |23.2    |0.95M   |110   |  
+
+
+It\`s very hard to list all models and their perfomance but a little easier to give some typical models.But you can click [here](http://cocodataset.org/#detection-leaderboard) to see leaderboards of object detection on coco datasets.
+
+Remeber, not all of these models are implemented and tested under a same circustance(though I personally hope there will be an official testing organiztion).This means speed can be different if you run on your own machine.
 
 
 
