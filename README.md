@@ -22,34 +22,26 @@ Prepare yourself, click into this link for an answer - http://tarangshah.com/blo
 ## State of art
 It`s very hard to list all models and their metrics and a little easier to give some typical models.But if we want to compare these models` ability, we have to make sure that some variables like machines they run on are same.Frameworks also influence, so it`s better to implement them all on a single framework with all condition same.But I think to make things easier, use their reported numbers can be a good start.
 
-#Non light model
+# Normal models(time tested on Titan X)
+
 |Models | AP| AP.5 |Backbone| time|
 |----|----|----|----|----|
 |[YOLOv3-608](https://arxiv.org/abs/1804.02767)|33.0 |57.9 |darknet53   |51|
 |[YOLOV3-320](https://arxiv.org/abs/1804.02767)|nan  |51.5 |darknet53   |22|
 |[SSD300](https://arxiv.org/abs/1512.02325)    |23.2 |41.2 |VGG-16      |17|
 |[SSD512](https://arxiv.org/abs/1512.02325)    |26.8 |46.5 |VGG-16      |45|
-|[DSSD513](https://arxiv.org/abs/1701.06659)   |33.2| 53.3 |Residual-101|182|
-|Tiny-DSOD|40.4||nan|
+|[DSSD513](https://arxiv.org/abs/1701.06659)   |33.2 |53.3 |Residual-101|182|
 |[RFB Net512](https://arxiv.org/abs/1711.07767) |33.8|54.2 |VGG-16      |30|
 |[RetinaNet](https://arxiv.org/pdf/1708.02002.pdf)|40.8|61.1|ResNeXt-101-FPN|200+|
-#Light model
-|Models | AP| AP.5 |Backbone| time|
-|----|----|----|----|----|
-|[YOLOV3-tiny](https://arxiv.org/abs/1804.02767)|nan |33.1 |nan         |5|
-|
-![image](https://pjreddie.com/media/image/map50blue.png)
-*This result come from pjreddie.com*
 
-Then you can clone the newest yolov3 repo、modify Makefile and make.Details can be found in this [blog](https://jkjung-avt.github.io/yolov3/)
-Assuming everything went OK, you should be able to  run test on your TX2 board!
-But I found that yolov3 is really slow on TX2.The first time I run it, I only get 2\~3 fps(or 0.3\~0.5 sec).I have run nvpmodel and jetson_clocks already.So we decided to check something else.
-The best thing I found is that you can set the model\`s input size in yolov3.cfg file.The input size can vary from 144 to 608.(The size must be 32 x ratio).I didn\`t test bigger or smaller size.As to our research I guess that\`s enought.Too small make model useless while too big is not bearably slow.
-So let\`s try to decrease the default size(416) and see whether we can find a good trade-off.
-I do this test by using yolov3 model(.cfg) and voc data.Sadly I found that there is no yolov3-voc weights available, the official yolov3.weights is trained on coco data.So I trained my own yolov3-voc weights(10400 iterations , used yolov3.weights as pretrained model).
-And use this weights to calculate mAP.
-Here is the result I have(Size vary from 160-384).
+# Light models(time tested on TX2)
 
-![image](https://github.com/FelixCaae/ObjectDetection_BasedOnTx2/blob/master/fps_mAP.png)
+|Models | VOC mAP | COCO mAP |Params|forward time|
+|----|----|----|----|-----|
+|[RFB_Mobile](https://arxiv.org/abs/1711.07767)       |73     |nan     |7.4M    |30    |  
+|[YOLOV3-tiny-512](https://arxiv.org/abs/1804.02767)  |62     |nan     |nan     |46    |
+|[Pelee](https://arxiv.org/pdf/1804.06882.pdf)        |70.9   |22.4    |5.98M   |60    | 
+|[Tiny-DSOD](https://arxiv.org/abs/1807.11013)        |77     |23.2    |0.95M   |110   |  
 
-So the result is interesting, the fourth point and fifth point has nearly same perfomance but totally different speed.There is a gap between two group of points.And so I think the fifth point(size 256) is a good choice to speed up yolov3`s perfomance.
+
+
