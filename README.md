@@ -1,4 +1,5 @@
-# Object Detection Research Based on TX2
+Object Detection Research Based on TX2
+----
 Lately our lab get a new device which is called TX2.It must be very powerful because of its cost, I guess.And now we need to do some researches to test how powerful it is when implemented in Object Detection area. 
 
 Here are some basic info I gathered to help readers who are not familiar with these concepts.If you are an expert, just jump it.
@@ -51,9 +52,11 @@ I found some promising models which are very popular these years.If we want to d
 
 And I did some experiments on our TX2.
 Firstly I won\`t choose models which are slow even on TITAN X.Then I find some light versions of these models because even fastest models listed above can be just so so when run by TX2.For an example YOLO V3(416x416) only gets around 3 fps.SSD is better but also not more than 10.
-### Be Careful!
-1. Use ```sudo nvpmodel - m 0``` and ```sudo ～\jetson_clocks.sh``` to totaly utilize your TX2 before you run anything.But this will also increase it\`s power consumption.
-2. I run all tests with gpu mode open.
+### TX2 full-mode
+```
+sudo nvpmodel - m 0
+sudo ～\jetson_clocks.sh
+```
 ### Experiments
 
 |Models | VOC mAP | COCO mAP |Params|forward time|
@@ -68,6 +71,10 @@ Firstly I won\`t choose models which are slow even on TITAN X.Then I find some l
 It\`s very hard to list all models and their perfomance but a little easier to give some typical models.But you can click [here](http://cocodataset.org/#detection-leaderboard) to see leaderboards of object detection on coco datasets.
 
 Remeber, not all of these models are implemented and tested under a same circustance(though I personally hope there will be an official testing organiztion).This means speed can be different if you run on your own machine.
+
+### How to deploy and test.
+
+[YOLO](https://github.com/FelixCaae/ObjectDetection_BasedOnTx2/blob/master/YOLO_on_TX2.md)
 
 ### TODO
 1. Use tensorRT to do infereneces(speed).
