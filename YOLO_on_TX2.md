@@ -108,7 +108,7 @@ Hope everything is OK for you!
 3. #### How to train and evaluate models?
 
 
-    There is a good repo by [AlexyAB](https://github.com/AlexeyAB/darknet).He can help you in this topic a lot.
+    There is a good repo by [AlexyAB](https://github.com/AlexeyAB/darknet).He can help you in this topic a lot.BTW I found there is no official yolov3-voc weights.
    
 ### Links 
 1. **JK Jung\`s blog** - https://jkjung-avt.github.io/ 
